@@ -17,6 +17,7 @@ class Father
             "[#{date_format}] #{severity} (#{progname}): #{msg}\n"
         end
     end
+    
     @@allarray = {"user" => [],"book" => [],"cab" => [],"pay" => [],"current_user" => ""}
 
     def self.display_all
