@@ -24,7 +24,6 @@ def matrix_diff(matrix)
     sec_diag = 0
     for i in (0...len)
         for j in (0...len)
-            p "#{i}#{j}"
             if (i == j)                
                 first_diag += matrix[i][j]          #two if conditions on a single forloop was acting wierd so i put them in differnt
             end
@@ -34,7 +33,6 @@ def matrix_diff(matrix)
 
     for i in (0...len)
         for j in (0...len)
-            p "#{i}#{j}"
             if (i = len - j - 1)
                 sec_diag += matrix[i][j]
             end
