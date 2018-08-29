@@ -1,10 +1,7 @@
 #Created by Chandel on 29/08/2018
 
 def min_max(*args)
-   sum = 0
-    args.each do |e|
-    sum = sum + e
-    end
+    sum = args.inject(&:+)
     puts "#{sum - args.max} #{sum - args.min}"
 end
 
@@ -22,8 +19,8 @@ def matrix_diff(matrix)
     len = matrix.length
     first_diag = 0
     sec_diag = 0
-    for i in (0...len)
-        for j in (0...len)
+    (0...len).each do |i|
+        (0...len).each do |j|
             if (i == j)                
                 first_diag += matrix[i][j]      
             end
@@ -38,20 +35,13 @@ def matrix_diff(matrix)
 end
 
 def all_product(*args)
-   puts args.inject(1) {|pro,ele| pro * ele}
+   puts args.inject(&:*)
 end
 
 def group_by_marks(marks,cut_off)
-    pass_arr = []
-    fail_arr = []
-    marks.each do |k,v|
-        if v < cut_off
-            fail_arr << [k.to_s,v]
-        else
-            pass_arr << [k.to_s,v]
-        end
-    end
-    p Hash["Failed" => fail_arr,"Passed" => pass_arr]
+    h = Hash["Failed" => [],"Passed" => []]
+    marks.each {|k,v| v < cut_off ? (h["Failed"] << [k.to_s,v]) : (h["Passed"] << [k.to_s,v])}
+    p h
 end
 
 #**************************************************************************#
