@@ -25,21 +25,16 @@ def matrix_diff(matrix)
     for i in (0...len)
         for j in (0...len)
             if (i == j)                
-                first_diag += matrix[i][j]          #two if conditions on a single forloop was acting wierd so i put them in differnt
+                first_diag += matrix[i][j]      
             end
-
-        end
-    end
-
-    for i in (0...len)
-        for j in (0...len)
-            if (i = len - j - 1)
+            if (i == len - j - 1)
                 sec_diag += matrix[i][j]
             end
+
         end
     end
     
-    p (first_diag - (sec_diag/len)).abs
+    p (first_diag - (sec_diag)).abs
 end
 
 def all_product(*args)
