@@ -1,7 +1,7 @@
 #Created by Chandel on 29/08/2018
 
 def min_max(*args)
-    sum = args.inject(&:+)
+    sum = args.sum
     puts "#{sum - args.max} #{sum - args.min}"
 end
 
@@ -10,28 +10,15 @@ def count_large(*args)
 end
 
 def matrix_diff(matrix)
-    matrix.each do |e|
-        if (matrix.length != e.length)
-            puts "Not a square matrix"
-            return
-        end
-    end
     len = matrix.length
-    first_diag = 0
-    sec_diag = 0
-    (0...len).each do |i|
-        (0...len).each do |j|
-            if (i == j)                
-                first_diag += matrix[i][j]      
-            end
-            if (i == len - j - 1)
-                sec_diag += matrix[i][j]
-            end
-
+    diff = 0
+    matrix.each_with_index do |sub_array,i|
+        sub_array.each_with_index do |ele,j|
+            diff += ele if (i == j)            
+            diff -= ele if (i == len - j - 1)
         end
-    end
-    
-    p (first_diag - (sec_diag)).abs
+    end    
+    p (diff).abs
 end
 
 def all_product(*args)
@@ -40,7 +27,7 @@ end
 
 def group_by_marks(marks,cut_off)
     h = Hash["Failed" => [],"Passed" => []]
-    marks.each {|k,v| v < cut_off ? (h["Failed"] << [k.to_s,v]) : (h["Passed"] << [k.to_s,v])}
+    marks.map {|k,v| v < cut_off ? (h["Failed"] << [k.to_s,v]) : (h["Passed"] << [k.to_s,v])}
     p h
 end
 
