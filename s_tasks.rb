@@ -10,15 +10,11 @@ def count_large(*args)
 end
 
 def matrix_diff(matrix)
-    len = matrix.length
-    diff = 0
-    matrix.each_with_index do |sub_array,i|
-        sub_array.each_with_index do |ele,j|
-            diff += ele if (i == j)            
-            diff -= ele if (i == len - j - 1)
-        end
-    end    
-    p (diff).abs
+    sum1 = 0
+    sum2 = 0
+    matrix.each_with_index{ |a,i| sum1 += a[i] }
+    matrix.each_with_index{ |a,i| sum2 += a[a.length-i-1] }
+    p (sum1 - sum2).abs
 end
 
 def all_product(*args)
@@ -26,9 +22,10 @@ def all_product(*args)
 end
 
 def group_by_marks(marks,cut_off)
-    h = Hash["Failed" => [],"Passed" => []]
-    marks.map {|k,v| v < cut_off ? (h["Failed"] << [k.to_s,v]) : (h["Passed"] << [k.to_s,v])}
-    p h
+    p marks.group_by {|k,v| v < cut_off ? 'Failed' : 'Passed'}
+    #h = Hash["Failed" => [],"Passed" => []]
+    #marks.map {|k,v| v < cut_off ? (h["Failed"] << [k.to_s,v]) : (h["Passed"] << [k.to_s,v])}
+    #p h
 end
 
 #**************************************************************************#
