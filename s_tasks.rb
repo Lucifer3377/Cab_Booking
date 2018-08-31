@@ -10,11 +10,12 @@ def count_large(*args)
 end
 
 def matrix_diff(matrix)
-    sum1 = 0
-    sum2 = 0
-    matrix.each_with_index{ |a,i| sum1 += a[i] }
-    matrix.each_with_index{ |a,i| sum2 += a[a.length-i-1] }
-    p (sum1 - sum2).abs
+    diff = 0
+    matrix.each_with_index do |a,i| 
+        diff += a[i]
+        diff -= a[a.length-i-1]
+    end
+    p (diff).abs
 end
 
 def all_product(*args)
